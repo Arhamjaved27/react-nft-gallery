@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import Card from './Components/Card';
 import Header from './Components/Header';
+import MainCard from './Components/MainCard';
 
 function App() {
 
@@ -188,6 +189,11 @@ function App() {
     setSortConfig({ field, order });
   };
 
+  // Get featured NFT (highest priced one)
+  const featuredNft = nftData.reduce((prev, current) => 
+    (prev.price > current.price) ? prev : current
+  );
+
   return ( 
     
     <>
@@ -267,6 +273,7 @@ function App() {
             </div>
           </div>
         </div>
+        <MainCard featuredNft={featuredNft} />
         <div className="nft-grid-container">
           {sortedNfts.map(nft =>
             <Card key={nft.id} data={nft} />
