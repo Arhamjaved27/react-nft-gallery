@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 import Card from './Components/Card';
 import Header from './Components/Header';
@@ -151,14 +152,123 @@ function App() {
   }
 ];
 
+  const [selectedAuthor, setSelectedAuthor] = useState('All');
+  const [sortConfig, setSortConfig] = useState({
+    field: 'artist',
+    order: 'asc',
+  });
+
+  const authorOptions = ['All', ...Array.from(new Set(nftData.map((nft) => nft.artist)))];
+
+  const sortedNfts = (() => {
+    const filtered = selectedAuthor === 'All'
+      ? nftData
+      : nftData.filter((nft) => nft.artist === selectedAuthor);
+
+    return [...filtered].sort((a, b) => {
+      let comparison = 0;
+
+      if (sortConfig.field === 'name') {
+        comparison = a.name.localeCompare(b.name);
+      } else if (sortConfig.field === 'price') {
+        comparison = a.price - b.price;
+      } else if (sortConfig.field === 'category') {
+        comparison = a.category.localeCompare(b.category);
+      }
+
+      return sortConfig.order === 'asc' ? comparison : -comparison;
+    });
+  })();
+
+  const handleAuthorChange = (event) => {
+    setSelectedAuthor(event.target.value);
+  };
+
+  const handleSortChange = (field, order) => {
+    setSortConfig({ field, order });
+  };
 
   return ( 
     
     <>
       <Header/>
       <div className='main' >
+        <div className='controls-bar'>
+          <div className='control-group'>
+            <label className='control-label' htmlFor='author-filter'>Filter by author</label>
+            <select
+              id='author-filter'
+              className='author-select'
+              value={selectedAuthor}
+              onChange={handleAuthorChange}
+            >
+              {authorOptions.map((author) => (
+                <option key={author} value={author}>
+                  {author}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className='control-group'>
+            <span className='control-label'>Sort by product name</span>
+            <div className='sort-buttons'>
+              <button
+                type='button'
+                className={`sort-button ${sortConfig.field === 'name' && sortConfig.order === 'asc' ? 'active' : ''}`}
+                onClick={() => handleSortChange('name', 'asc')}
+              >
+                A to Z
+              </button>
+              <button
+                type='button'
+                className={`sort-button ${sortConfig.field === 'name' && sortConfig.order === 'desc' ? 'active' : ''}`}
+                onClick={() => handleSortChange('name', 'desc')}
+              >
+                Z to A
+              </button>
+            </div>
+          </div>
+          <div className='control-group'>
+            <span className='control-label'>Sort by price</span>
+            <div className='sort-buttons'>
+              <button
+                type='button'
+                className={`sort-button ${sortConfig.field === 'price' && sortConfig.order === 'asc' ? 'active' : ''}`}
+                onClick={() => handleSortChange('price', 'asc')}
+              >
+                Low to High
+              </button>
+              <button
+                type='button'
+                className={`sort-button ${sortConfig.field === 'price' && sortConfig.order === 'desc' ? 'active' : ''}`}
+                onClick={() => handleSortChange('price', 'desc')}
+              >
+                High to Low
+              </button>
+            </div>
+          </div>
+          <div className='control-group'>
+            <span className='control-label'>Sort by category</span>
+            <div className='sort-buttons'>
+              <button
+                type='button'
+                className={`sort-button ${sortConfig.field === 'category' && sortConfig.order === 'asc' ? 'active' : ''}`}
+                onClick={() => handleSortChange('category', 'asc')}
+              >
+                A to Z
+              </button>
+              <button
+                type='button'
+                className={`sort-button ${sortConfig.field === 'category' && sortConfig.order === 'desc' ? 'active' : ''}`}
+                onClick={() => handleSortChange('category', 'desc')}
+              >
+                Z to A
+              </button>
+            </div>
+          </div>
+        </div>
         <div className="nft-grid-container">
-          {nftData.map(nft =>
+          {sortedNfts.map(nft =>
             <Card key={nft.id} data={nft} />
           )}
         </div>
