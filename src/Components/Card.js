@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import './Card.css';
 
 function Card(nft) {
+    const navigate = useNavigate();
 
     const handleClick = () => {
-        alert("Card clicked:");
+        navigate(`/nft/${nft.data.id}`);
     };
 
   return (

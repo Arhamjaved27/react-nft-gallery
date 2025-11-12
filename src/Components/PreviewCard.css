@@ -1,0 +1,251 @@
+.preview-container {
+  min-height: 90vh;
+  background-color: rgb(0, 10, 48);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preview-back-button {
+  align-self: flex-start;
+  background-color: #0f1b4c;
+  color: #f5f6ff;
+  border: 1px solid #2f3c6e;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.preview-back-button:hover {
+  background-color: #5570ff;
+  border-color: #5570ff;
+  transform: translateX(-4px);
+}
+
+.preview-content {
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  background: rgba(15, 27, 76, 0.5);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(85, 112, 255, 0.2);
+}
+
+.preview-image-section {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0f1b4c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.preview-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: #f5f6ff;
+}
+
+.preview-category {
+  display: inline-block;
+  font-size: 0.875rem;
+  color: #5570ff;
+  background: rgba(85, 112, 255, 0.15);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-weight: 500;
+  width: fit-content;
+}
+
+.preview-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #f5f6ff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.preview-description {
+  font-size: 1.1rem;
+  color: #b8b9c4;
+  /* line-height: 1.6; */
+  margin: 0;
+}
+
+.preview-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(15, 27, 76, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(85, 112, 255, 0.1);
+}
+
+.preview-detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 0.45rem 0;
+  border-bottom: 1px solid rgba(85, 112, 255, 0.1);
+}
+
+.preview-detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-size: 0.9rem;
+  color: #b8b9c4;
+  font-weight: 500;
+}
+
+.detail-value {
+  font-size: 1rem;
+  color: #f5f6ff;
+  font-weight: 600;
+}
+
+.preview-price-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: rgba(85, 112, 255, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(85, 112, 255, 0.3);
+}
+
+.price-label {
+  font-size: 0.9rem;
+  color: #b8b9c4;
+  font-weight: 500;
+}
+
+.price-value {
+  font-size: 2rem;
+  color: #5570ff;
+  font-weight: 700;
+}
+
+.preview-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.preview-buy-button {
+  flex: 1;
+  background: linear-gradient(135deg, #5570ff, #667eea);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.preview-buy-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(85, 112, 255, 0.4);
+}
+
+.preview-offer-button {
+  flex: 1;
+  background-color: transparent;
+  color: #5570ff;
+  border: 2px solid #5570ff;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.preview-offer-button:hover {
+  background-color: rgba(85, 112, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.preview-error {
+  min-height: 100vh;
+  background-color: rgb(0, 10, 48);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #f5f6ff;
+  gap: 2rem;
+}
+
+.preview-error h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.preview-error button {
+  background-color: #5570ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.preview-error button:hover {
+  background-color: #667eea;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 968px) {
+  .preview-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .preview-name {
+    font-size: 2rem;
+  }
+
+  .preview-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .preview-container {
+    padding: 1rem;
+  }
+
+  .preview-content {
+    padding: 1.5rem;
+  }
+
+  .preview-name {
+    font-size: 1.75rem;
+  }
+
+  .price-value {
+    font-size: 1.5rem;
+  }
+}
+
