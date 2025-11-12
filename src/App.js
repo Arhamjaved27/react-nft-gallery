@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Card from './Components/Card';
 import Header from './Components/Header';
 import MainCard from './Components/MainCard';
-import PreviewCard from './Components/PreviewCard';
 
 function App() {
 
@@ -173,11 +171,9 @@ function App() {
 
       if (sortConfig.field === 'name') {
         comparison = a.name.localeCompare(b.name);
-      } 
-      else if (sortConfig.field === 'price') {
+      } else if (sortConfig.field === 'price') {
         comparison = a.price - b.price;
-      } 
-      else if (sortConfig.field === 'category') {
+      } else if (sortConfig.field === 'category') {
         comparison = a.category.localeCompare(b.category);
       }
 
@@ -199,105 +195,94 @@ function App() {
   );
 
   return ( 
-    <Routes>
-      <Route path="/nft/:id" element={
-        <>
-          <Header/>
-          <PreviewCard nftData={nftData} />
-        </>
-      } />
-      <Route path="/" element={
-        <>
-          <Header/>
-          <div className='main' >
-          <MainCard featuredNft={featuredNft} />
-
-            <div className='controls-bar'>
-              <div className='control-group'>
-                <label className='control-label' htmlFor='author-filter'>Filter by author</label>
-                <select
-                  id='author-filter'
-                  className='author-select'
-                  value={selectedAuthor}
-                  onChange={handleAuthorChange}
-                >
-                  {authorOptions.map((author) => (
-                    <option key={author} value={author}>
-                      {author}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className='control-group'>
-                <span className='control-label'>Sort by product name</span>
-                <div className='sort-buttons'>
-                  <button
-                    type='button'
-                    className={`sort-button ${sortConfig.field === 'name' && sortConfig.order === 'asc' ? 'active' : ''}`}
-                    onClick={() => handleSortChange('name', 'asc')}
-                  >
-                    A to Z
-                  </button>
-                  <button
-                    type='button'
-                    className={`sort-button ${sortConfig.field === 'name' && sortConfig.order === 'desc' ? 'active' : ''}`}
-                    onClick={() => handleSortChange('name', 'desc')}
-                  >
-                    Z to A
-                  </button>
-                </div>
-              </div>
-              <div className='control-group'>
-                <span className='control-label'>Sort by price</span>
-                <div className='sort-buttons'>
-                  <button
-                    type='button'
-                    className={`sort-button ${sortConfig.field === 'price' && sortConfig.order === 'asc' ? 'active' : ''}`}
-                    onClick={() => handleSortChange('price', 'asc')}
-                  >
-                    Low to High
-                  </button>
-                  <button
-                    type='button'
-                    className={`sort-button ${sortConfig.field === 'price' && sortConfig.order === 'desc' ? 'active' : ''}`}
-                    onClick={() => handleSortChange('price', 'desc')}
-                  >
-                    High to Low
-                  </button>
-                </div>
-              </div>
-              <div className='control-group'>
-                <span className='control-label'>Sort by category</span>
-                <div className='sort-buttons'>
-                  <button
-                    type='button'
-                    className={`sort-button ${sortConfig.field === 'category' && sortConfig.order === 'asc' ? 'active' : ''}`}
-                    onClick={() => handleSortChange('category', 'asc')}
-                  >
-                    A to Z
-                  </button>
-                  <button
-                    type='button'
-                    className={`sort-button ${sortConfig.field === 'category' && sortConfig.order === 'desc' ? 'active' : ''}`}
-                    onClick={() => handleSortChange('category', 'desc')}
-                  >
-                    Z to A
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-            <div className="nft-grid-container">
-              {sortedNfts.map(nft =>
-                <Card key={nft.id} data={nft} />
-              )}
+    
+    <>
+      <Header/>
+      <div className='main' >
+        <div className='controls-bar'>
+          <div className='control-group'>
+            <label className='control-label' htmlFor='author-filter'>Filter by author</label>
+            <select
+              id='author-filter'
+              className='author-select'
+              value={selectedAuthor}
+              onChange={handleAuthorChange}
+            >
+              {authorOptions.map((author) => (
+                <option key={author} value={author}>
+                  {author}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className='control-group'>
+            <span className='control-label'>Sort by product name</span>
+            <div className='sort-buttons'>
+              <button
+                type='button'
+                className={`sort-button ${sortConfig.field === 'name' && sortConfig.order === 'asc' ? 'active' : ''}`}
+                onClick={() => handleSortChange('name', 'asc')}
+              >
+                A to Z
+              </button>
+              <button
+                type='button'
+                className={`sort-button ${sortConfig.field === 'name' && sortConfig.order === 'desc' ? 'active' : ''}`}
+                onClick={() => handleSortChange('name', 'desc')}
+              >
+                Z to A
+              </button>
             </div>
           </div>
-        </>
-      } />
-    </Routes>
+          <div className='control-group'>
+            <span className='control-label'>Sort by price</span>
+            <div className='sort-buttons'>
+              <button
+                type='button'
+                className={`sort-button ${sortConfig.field === 'price' && sortConfig.order === 'asc' ? 'active' : ''}`}
+                onClick={() => handleSortChange('price', 'asc')}
+              >
+                Low to High
+              </button>
+              <button
+                type='button'
+                className={`sort-button ${sortConfig.field === 'price' && sortConfig.order === 'desc' ? 'active' : ''}`}
+                onClick={() => handleSortChange('price', 'desc')}
+              >
+                High to Low
+              </button>
+            </div>
+          </div>
+          <div className='control-group'>
+            <span className='control-label'>Sort by category</span>
+            <div className='sort-buttons'>
+              <button
+                type='button'
+                className={`sort-button ${sortConfig.field === 'category' && sortConfig.order === 'asc' ? 'active' : ''}`}
+                onClick={() => handleSortChange('category', 'asc')}
+              >
+                A to Z
+              </button>
+              <button
+                type='button'
+                className={`sort-button ${sortConfig.field === 'category' && sortConfig.order === 'desc' ? 'active' : ''}`}
+                onClick={() => handleSortChange('category', 'desc')}
+              >
+                Z to A
+              </button>
+            </div>
+          </div>
+        </div>
+        <MainCard featuredNft={featuredNft} />
+        <div className="nft-grid-container">
+          {sortedNfts.map(nft =>
+            <Card key={nft.id} data={nft} />
+          )}
+        </div>
+      </div>
+    </>
+      
       );
-
 }
 
 export default App;
