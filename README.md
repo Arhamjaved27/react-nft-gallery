@@ -30,7 +30,7 @@ A modern, interactive NFT gallery application built with React. Browse, filter, 
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone <repository-url>](https://github.com/Arhamjaved27/react-nft-gallery.git)
 cd task-20-nft-gallery
 ```
 
@@ -70,10 +70,6 @@ src/
 ├── App.css
 └── index.js             # Entry point
 ```
-
-## License
-
-This project is private and proprietary.
 
 ---
 
